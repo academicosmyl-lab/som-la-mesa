@@ -270,7 +270,7 @@
 .ps-problem-img-wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -279,12 +279,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.45s ease;
 }
 
 .ps-problem-card:hover .ps-problem-img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .ps-urgency-badge {
@@ -347,10 +348,11 @@
   width: 100%;
   max-width: 320px;
   margin: 0 auto;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center top;
   display: block;
-  filter: grayscale(20%);
+  filter: grayscale(15%);
 }
 
 .ps-quote-eyebrow {
@@ -422,13 +424,14 @@
 
 .ps-gallery-item {
   overflow: hidden;
-  height: 260px;
+  aspect-ratio: 4 / 3;
 }
 
 .ps-gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   transition: transform 0.5s ease;
   filter: grayscale(15%);
@@ -443,7 +446,6 @@
   .ps-gallery {
     grid-template-columns: repeat(3, 1fr);
   }
-  .ps-gallery-item { height: 300px; }
 }
 
 /* ── CTA ── */
