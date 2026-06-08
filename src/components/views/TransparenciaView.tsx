@@ -20,7 +20,6 @@ export default function TransparenciaView({ compromisos }: Props) {
 
   const cumplidos    = lista.filter(c => c.estado === 'CUMPLIDO').length
   const enProgreso   = lista.filter(c => c.estado === 'EN_PROGRESO').length
-  const pendientes   = lista.filter(c => c.estado === 'PENDIENTE').length
   const avanceProm   = lista.length > 0 ? Math.round(lista.reduce((s, c) => s + c.avance, 0) / lista.length) : 0
 
   return (
