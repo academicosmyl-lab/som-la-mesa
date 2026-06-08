@@ -11,7 +11,7 @@ const PROBLEMAS_PUBLICOS = [
     zona: 'Rural',
     urgencia: 'CRÍTICO',
     color: '#c0392b',
-    icon: '💧',
+    img: 'https://images.unsplash.com/photo-1538300342682-cf57afb97285?w=800&q=80',
   },
   {
     titulo: 'Vías terciarias deterioradas',
@@ -20,7 +20,7 @@ const PROBLEMAS_PUBLICOS = [
     zona: 'Rural',
     urgencia: 'CRÍTICO',
     color: '#c0392b',
-    icon: '🛣️',
+    img: 'https://images.unsplash.com/photo-1609185034404-a7a6354df54d?w=800&q=80',
   },
   {
     titulo: 'Falta de conectividad digital',
@@ -29,7 +29,7 @@ const PROBLEMAS_PUBLICOS = [
     zona: 'Municipio',
     urgencia: 'URGENTE',
     color: '#e67e22',
-    icon: '📡',
+    img: 'https://images.unsplash.com/photo-1564760290292-23341e4df6ec?w=800&q=80',
   },
   {
     titulo: 'Desempleo juvenil',
@@ -38,7 +38,7 @@ const PROBLEMAS_PUBLICOS = [
     zona: 'Urbano',
     urgencia: 'URGENTE',
     color: '#e67e22',
-    icon: '👩‍💼',
+    img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
   },
 ]
 
@@ -180,14 +180,18 @@ export default function PublicSite() {
         <div className="ps-problems-grid">
           {PROBLEMAS_PUBLICOS.map(p => (
             <article key={p.titulo} className="ps-problem-card">
-              <div className="ps-problem-icon">{p.icon}</div>
-              <div className="ps-urgency-badge" style={{ color: p.color, borderColor: p.color }}>
-                {p.urgencia} · {p.zona}
+              <div className="ps-problem-img-wrap">
+                <img src={p.img} alt={p.titulo} className="ps-problem-img" loading="lazy" />
+                <div className="ps-urgency-badge" style={{ color: '#fff', borderColor: p.color, background: p.color }}>
+                  {p.urgencia} · {p.zona}
+                </div>
               </div>
-              <h4 className="ps-problem-title">{p.titulo}</h4>
-              <p className="ps-problem-desc">{p.descripcion}</p>
-              <div className="ps-problem-affected">
-                Afecta: <span style={{ color: p.color }}>{p.afectados}</span>
+              <div className="ps-problem-body">
+                <h4 className="ps-problem-title">{p.titulo}</h4>
+                <p className="ps-problem-desc">{p.descripcion}</p>
+                <div className="ps-problem-affected">
+                  Afecta: <span style={{ color: p.color }}>{p.afectados}</span>
+                </div>
               </div>
             </article>
           ))}
