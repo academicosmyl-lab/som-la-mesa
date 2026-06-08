@@ -47,7 +47,7 @@ function Dashboard() {
   return (
     <>
       {!ready && <SplashScreen onDone={handleSplashDone} />}
-      <div className="flex h-full overflow-hidden" style={{ background: '#080B11' }}>
+      <div className="som-shell flex h-full" style={{ background: '#080B11' }}>
         <Sidebar />
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
           <Header />
