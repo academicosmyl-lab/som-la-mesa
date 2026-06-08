@@ -1,16 +1,17 @@
 import {
   LayoutDashboard, Map, FileInput, ShieldCheck,
-  BarChart2, Bot, Zap, LogOut
+  BarChart2, Bot, Zap, LogOut, Star
 } from 'lucide-react'
 import { useAuth } from '../../lib/AuthContext'
 import type { StatsReportes } from '../../hooks/useDashboardData'
 
-export type SomView = 'dashboard' | 'mapa' | 'captura' | 'transparencia' | 'indices' | 'agentes'
+export type SomView = 'dashboard' | 'mapa' | 'captura' | 'transparencia' | 'indices' | 'agentes' | 'lideres'
 
 const NAV: { id: SomView; label: string; icon: any }[] = [
   { id: 'dashboard',     label: 'Dashboard',          icon: LayoutDashboard },
   { id: 'mapa',          label: 'Mapa Territorial',   icon: Map },
   { id: 'captura',       label: 'Captura Ciudadana',  icon: FileInput },
+  { id: 'lideres',       label: 'Red de Líderes',     icon: Star },
   { id: 'transparencia', label: 'Transparencia',      icon: ShieldCheck },
   { id: 'indices',       label: 'Índices',            icon: BarChart2 },
   { id: 'agentes',       label: 'Agentes IA',         icon: Bot },
@@ -29,7 +30,7 @@ interface Props {
 }
 
 export default function Sidebar({ active, onNav, stats }: Props) {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
 
   return (
     <aside
@@ -105,8 +106,14 @@ export default function Sidebar({ active, onNav, stats }: Props) {
         ))}
       </div>
 
-      {/* Sign out */}
+      {/* User + Sign out */}
       <div className="px-3 pb-4" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+        {user?.email && (
+          <div className="px-2 py-2 mt-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)' }}>
+            <p className="font-data text-[8px] uppercase tracking-widest" style={{ color: '#3a4760' }}>Sesión activa</p>
+            <p className="font-data text-[10px] truncate mt-[2px]" style={{ color: '#7E8AA0' }}>{user.email}</p>
+          </div>
+        )}
         <button
           onClick={() => signOut()}
           className="flex items-center gap-2 w-full px-3 py-2 rounded-lg mt-2"

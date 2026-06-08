@@ -1,12 +1,12 @@
--- ============================================================
--- Migración 001 · Cambio tema → temas (selección múltiple)
--- Pegar en Supabase SQL Editor y ejecutar
--- ============================================================
+-- ================================================================
+-- MIGRACIÓN 001 — Soporte multi-tema en reportes
+-- Pegar en: Supabase → SQL Editor → New Query → Run
+-- ================================================================
 
--- Eliminar columna tema (texto único)
+-- 1. Eliminar columnas de tema único (si existen)
 alter table reportes drop column if exists tema;
 alter table reportes drop column if exists detalle;
 
--- Agregar columna temas (array) y detalles (JSON por tema)
-alter table reportes add column if not exists temas text[] not null default '{}';
+-- 2. Agregar columnas de múltiples temas
+alter table reportes add column if not exists temas    text[] not null default '{}';
 alter table reportes add column if not exists detalles jsonb;

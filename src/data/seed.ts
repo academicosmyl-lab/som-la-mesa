@@ -257,6 +257,22 @@ export const DEMO_MAP_POINTS = [
   },
 ]
 
+// Coordenadas exactas de las 12 zonas (del schema.sql — no modificar)
+export const ZONA_COORDS: Record<string, [number, number]> = {
+  'Centro':              [4.6328, -74.4597],
+  'El Triunfo':          [4.6340, -74.4610],
+  'La Esperanza':        [4.6315, -74.4580],
+  'Brisas del Campo':    [4.6350, -74.4625],
+  'San Carlos':          [4.6300, -74.4560],
+  'El Cairo':            [4.6180, -74.4420],
+  'La Esperanza Rural':  [4.6450, -74.4700],
+  'San Javier':          [4.6080, -74.4350],
+  'El Paraíso':          [4.6550, -74.4800],
+  'La Victoria':         [4.5980, -74.4280],
+  'El Triunfo Rural':    [4.6620, -74.4890],
+  'Las Palmas':          [4.5900, -74.4200],
+}
+
 export const AGENTES = [
   {
     id: 'estadistico',

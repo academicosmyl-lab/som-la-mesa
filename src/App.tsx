@@ -27,6 +27,7 @@ import CapturaView from './components/views/CapturaView'
 import TransparenciaView from './components/views/TransparenciaView'
 import IndicesView from './components/views/IndicesView'
 import AgentesView from './components/views/AgentesView'
+import LideresView from './components/views/LideresView'
 
 const SPLASH_SEEN_KEY = 'som_splash_seen'
 
@@ -41,6 +42,7 @@ const VIEW_TITLES: Record<SomView, string> = {
   dashboard:     'Dashboard General',
   mapa:          'Mapa Territorial',
   captura:       'Captura Ciudadana',
+  lideres:       'Red de Líderes',
   transparencia: 'Motor de Transparencia',
   indices:       'Índices de Gestión',
   agentes:       'Agentes IA',
@@ -115,6 +117,12 @@ function Dashboard() {
               {activeView === 'indices' && (
                 <motion.div key="indices" {...fadeUp(0)} style={{ height: 'calc(100vh - 160px)' }}>
                   <IndicesView stats={data.stats} />
+                </motion.div>
+              )}
+
+              {activeView === 'lideres' && (
+                <motion.div key="lideres" {...fadeUp(0)} style={{ height: 'calc(100vh - 160px)' }}>
+                  <LideresView />
                 </motion.div>
               )}
 
