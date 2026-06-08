@@ -202,8 +202,8 @@ export default function PublicSite() {
       <section className="ps-quote-section">
         <div className="ps-quote-inner">
           <img
-            src={`${BASE}/media/fabio-evento-1.png`}
-            alt="Fabio A. Cabrera"
+            src={`${BASE}/media/fabio-cabildo.png`}
+            alt="Fabio A. Cabrera hablando en cabildo"
             className="ps-quote-img"
           />
           <div>
@@ -238,6 +238,19 @@ export default function PublicSite() {
           ))}
         </div>
       </section>
+
+      {/* ── GALERÍA ── */}
+      <div className="ps-gallery">
+        {[
+          { src: `${BASE}/media/fabio-mesa-reunion.png`,  alt: 'Reunión de trabajo' },
+          { src: `${BASE}/media/fabio-institucional.png`, alt: 'Gestión institucional' },
+          { src: `${BASE}/media/fabio-comunidad.png`,     alt: 'Con la comunidad' },
+        ].map(img => (
+          <div key={img.src} className="ps-gallery-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
 
       <div className="ps-rule" />
 
