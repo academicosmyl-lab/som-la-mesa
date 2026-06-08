@@ -1,8 +1,22 @@
-import { Users2, Target, Trophy, CalendarClock, MessageSquare } from 'lucide-react'
+import { Users2, Target, Trophy, CalendarClock, MessageSquare, type LucideIcon } from 'lucide-react'
 import AnimatedCounter from '../ui/AnimatedCounter'
 import ProgressRing from '../ui/ProgressRing'
 import { CENSO, OBJETIVO, RESULTADOS_2023, ELECCION, TERRITORIO } from '../../data/seed'
 import { daysUntil } from '../../hooks/useClock'
+
+interface KPICard {
+  label: string
+  sublabel: string
+  value: number
+  icon: LucideIcon
+  color: string
+  ring: number
+  ringLabel: string
+  note: string
+  valueSuffix?: string
+  isRange?: boolean
+  isLive?: boolean
+}
 
 const dias = daysUntil(ELECCION.fechaEstimada)
 const umbral = RESULTADOS_2023[0]
@@ -12,7 +26,7 @@ const TOTAL_DIAS = 490
 const DIAS_TRANSCURRIDOS = TOTAL_DIAS - dias
 const TIEMPO_RING = Math.round((DIAS_TRANSCURRIDOS / TOTAL_DIAS) * 100)
 
-const CARDS = [
+const CARDS: KPICard[] = [
   {
     label:    'Censo Electoral',
     sublabel: `${CENSO.ano} · La Mesa, Cundinamarca`,
@@ -58,7 +72,7 @@ const CARDS = [
 ]
 
 export default function KPIBar({ totalReportes = 0 }: { totalReportes?: number }) {
-  const CARDS_LIVE = [
+  const CARDS_LIVE: KPICard[] = [
     ...CARDS,
     {
       label:    'Reportes Ciudadanos',
