@@ -23,11 +23,11 @@ export interface Zona {
 export interface Reporte {
   id: string
   created_at: string
-  zona_id: string
+  zona_id: string | null
   zona_nombre: string
   tipo_zona: TipoZona
-  tema: TemaReporte
-  detalle: string | null
+  temas: TemaReporte[]
+  detalles: Partial<Record<TemaReporte, string>> | null
   foto_url: string | null
   lat: number | null
   lng: number | null
