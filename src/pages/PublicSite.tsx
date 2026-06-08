@@ -1,4 +1,5 @@
 import './PublicSite.css'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CENSO, MUNICIPIO, TERRITORIO } from '../data/seed'
 
@@ -52,6 +53,15 @@ const BASE = '/som-la-mesa'
 
 export default function PublicSite() {
   const navigate = useNavigate()
+  const [muted, setMuted] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !muted
+      setMuted(m => !m)
+    }
+  }
 
   return (
     <div className="ps-root">
@@ -82,10 +92,27 @@ export default function PublicSite() {
 
       {/* ── HERO VIDEO ── */}
       <section className="ps-hero">
-        <video autoPlay muted loop playsInline>
+        <video ref={videoRef} autoPlay muted loop playsInline>
           <source src={`${BASE}/media/la-mesa-hero.mp4`} type="video/mp4" />
         </video>
         <div className="ps-hero-overlay" />
+
+        {/* Botón mute/unmute */}
+        <button
+          onClick={toggleMute}
+          aria-label={muted ? 'Activar sonido' : 'Silenciar'}
+          style={{
+            position: 'absolute', top: 16, right: 16, zIndex: 10,
+            background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: '50%', width: 42, height: 42,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: '#fff', fontSize: 18,
+            backdropFilter: 'blur(4px)',
+            transition: 'background 0.2s',
+          }}
+        >
+          {muted ? '🔇' : '🔊'}
+        </button>
         <div className="ps-hero-content">
           <div className="ps-hero-tag">En construcción · {MUNICIPIO.nombre}</div>
           <h2 className="ps-hero-title">
