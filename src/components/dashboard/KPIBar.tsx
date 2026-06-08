@@ -1,4 +1,4 @@
-import { Users2, Target, Trophy, CalendarClock } from 'lucide-react'
+import { Users2, Target, Trophy, CalendarClock, MessageSquare } from 'lucide-react'
 import AnimatedCounter from '../ui/AnimatedCounter'
 import ProgressRing from '../ui/ProgressRing'
 import { CENSO, OBJETIVO, RESULTADOS_2023, ELECCION, TERRITORIO } from '../../data/seed'
@@ -57,10 +57,25 @@ const CARDS = [
   },
 ]
 
-export default function KPIBar() {
+export default function KPIBar({ totalReportes = 0 }: { totalReportes?: number }) {
+  const CARDS_LIVE = [
+    ...CARDS,
+    {
+      label:    'Reportes Ciudadanos',
+      sublabel: 'Capturados en el SOM',
+      value:    totalReportes,
+      icon:     MessageSquare,
+      color:    '#39DC84',
+      ring:     Math.min(Math.round((totalReportes / 100) * 100), 100),
+      ringLabel: totalReportes >= 100 ? 'Meta inicial alcanzada' : `${100 - totalReportes} para la meta inicial`,
+      note:     'Datos reales · actualización en tiempo real',
+      isLive:   true,
+    },
+  ]
+
   return (
-    <div className="grid grid-cols-4 gap-3">
-      {CARDS.map((card) => {
+    <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
+      {CARDS_LIVE.map((card) => {
         const Icon = card.icon
         return (
           <div
@@ -89,8 +104,13 @@ export default function KPIBar() {
                 </div>
                 <span className="panel-label">{card.label}</span>
               </div>
-
-              {/* Progress ring */}
+              {'isLive' in card && card.isLive ? (
+                <span className="font-data text-[8px] font-bold uppercase tracking-widest px-2 py-[3px] rounded"
+                  style={{ background: 'rgba(57,220,132,0.12)', color: '#39DC84', border: '1px solid rgba(57,220,132,0.25)' }}>
+                  LIVE
+                </span>
+              ) : (
+              /* Progress ring */
               <div style={{ position: 'relative' }}>
                 <ProgressRing
                   percent={card.ring}
@@ -107,6 +127,7 @@ export default function KPIBar() {
                   {card.ring}%
                 </div>
               </div>
+              )}
             </div>
 
             {/* Main value */}

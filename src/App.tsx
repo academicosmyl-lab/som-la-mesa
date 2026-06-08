@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useDashboardData } from './hooks/useDashboardData'
 import { Routes, Route } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PublicSite from './pages/PublicSite'
@@ -42,6 +43,7 @@ function Dashboard() {
   const [ready, setReady] = useState(() =>
     sessionStorage.getItem(SPLASH_SEEN_KEY) === '1'
   )
+  const data = useDashboardData()
 
   const handleSplashDone = () => {
     sessionStorage.setItem(SPLASH_SEEN_KEY, '1')
@@ -57,17 +59,17 @@ function Dashboard() {
           <Header />
           <LiveTicker />
           <main className="flex-1 overflow-auto scroll-som grid-texture" style={{ padding: '14px 16px 16px' }}>
-            <motion.div {...fadeUp(0.05)}><KPIBar /></motion.div>
+            <motion.div {...fadeUp(0.05)}><KPIBar totalReportes={data.stats.total} /></motion.div>
             <div className="grid gap-3 mt-3" style={{ gridTemplateColumns: '3fr 2fr', height: 302 }}>
-              <motion.div {...fadeLeft(0.15)} className="h-full"><TerritoryMap /></motion.div>
+              <motion.div {...fadeLeft(0.15)} className="h-full"><TerritoryMap reportes={data.reportes} /></motion.div>
               <motion.div {...fadeRight(0.2)} className="h-full"><ElectoralPanel /></motion.div>
             </div>
             <div className="grid grid-cols-3 gap-3 mt-3" style={{ height: 272 }}>
-              <motion.div {...fadeUp(0.25)} className="h-full"><PriorityIndex /></motion.div>
-              <motion.div {...fadeUp(0.32)} className="h-full"><SocialMoodRadar /></motion.div>
-              <motion.div {...fadeUp(0.39)} className="h-full"><AgentStatusPanel /></motion.div>
+              <motion.div {...fadeUp(0.25)} className="h-full"><PriorityIndex stats={data.stats} /></motion.div>
+              <motion.div {...fadeUp(0.32)} className="h-full"><SocialMoodRadar stats={data.stats} /></motion.div>
+              <motion.div {...fadeUp(0.39)} className="h-full"><AgentStatusPanel stats={data.stats} loading={data.loading} /></motion.div>
             </div>
-            <motion.div {...fadeUp(0.45)} className="mt-3"><TransparencyEngine /></motion.div>
+            <motion.div {...fadeUp(0.45)} className="mt-3"><TransparencyEngine compromisos={data.compromisos} /></motion.div>
           </main>
         </div>
       </div>
