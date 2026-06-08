@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PublicSite from './pages/PublicSite'
+import ReportarPage from './pages/ReportarPage'
+import PrivacidadPage from './pages/PrivacidadPage'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import LiveTicker from './components/ui/LiveTicker'
@@ -76,6 +78,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<PublicSite />} />
       <Route path="/som" element={<Dashboard />} />
+      <Route path="/reportar" element={<ReportarPage />} />
+      <Route path="/privacidad" element={<PrivacidadPage />} />
     </Routes>
   )
 }
