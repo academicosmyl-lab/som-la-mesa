@@ -81,8 +81,22 @@ export default function PublicSite() {
         </div>
 
         <nav className="ps-nav">
-          {['El municipio', 'Problemas', 'Potencial', 'Participa'].map(item => (
-            <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`}>{item}</a>
+          {[
+            { label: 'El municipio', id: 'el-municipio' },
+            { label: 'Problemas',   id: 'problemas'    },
+            { label: 'Potencial',   id: 'potencial'    },
+            { label: 'Participa',   id: 'participa'    },
+          ].map(({ label, id }) => (
+            <a
+              key={id}
+              href="#"
+              onClick={e => {
+                e.preventDefault()
+                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              {label}
+            </a>
           ))}
           <button className="ps-nav-btn" onClick={() => navigate('/som')}>
             Equipo ›
