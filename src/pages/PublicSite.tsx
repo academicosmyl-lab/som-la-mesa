@@ -99,7 +99,7 @@ export default function PublicSite() {
               {label}
             </a>
           ))}
-          <button className="ps-nav-btn" onClick={() => navigate('/som')}>
+          <button className="ps-nav-btn" onClick={() => navigate('/login')}>
             Equipo ›
           </button>
         </nav>

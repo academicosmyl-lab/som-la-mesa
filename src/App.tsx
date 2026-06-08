@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import PublicSite from './pages/PublicSite'
 import ReportarPage from './pages/ReportarPage'
 import PrivacidadPage from './pages/PrivacidadPage'
+import LoginPage from './pages/LoginPage'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import LiveTicker from './components/ui/LiveTicker'
@@ -77,7 +79,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<PublicSite />} />
-      <Route path="/som" element={<Dashboard />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/som" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/reportar" element={<ReportarPage />} />
       <Route path="/privacidad" element={<PrivacidadPage />} />
     </Routes>
