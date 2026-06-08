@@ -1,7 +1,8 @@
 import './PublicSite.css'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CENSO, MUNICIPIO, TERRITORIO } from '../data/seed'
+import { MUNICIPIO } from '../data/seed'
+import StatsCharts from '../components/public/StatsCharts'
 
 const PROBLEMAS_PUBLICOS = [
   {
@@ -147,20 +148,7 @@ export default function PublicSite() {
           <div style={{ width: 60, height: 3, background: '#1a1a1a', margin: '14px auto 0' }} />
         </div>
 
-        <div className="ps-stats-grid">
-          {[
-            { valor: Math.round(TERRITORIO.poblacionCenso2018 / 1000) + 'K', label: 'Habitantes', sub: 'Censo 2018' },
-            { valor: CENSO.habilitados.toLocaleString('es-CO'), label: 'Habilitados para votar', sub: 'Registraduría 2023' },
-            { valor: TERRITORIO.urbana.porcentaje.toFixed(0) + '%', label: 'Población urbana', sub: `vs ${TERRITORIO.rural.porcentaje.toFixed(0)}% rural` },
-            { valor: MUNICIPIO.distanciaBogota + ' km', label: 'De Bogotá', sub: 'Capital de provincia' },
-          ].map(c => (
-            <div key={c.label} className="ps-stat-card">
-              <div className="ps-stat-value">{c.valor}</div>
-              <div className="ps-stat-label">{c.label}</div>
-              <div className="ps-stat-sub">{c.sub}</div>
-            </div>
-          ))}
-        </div>
+        <StatsCharts />
       </section>
 
       <div className="ps-rule" />
