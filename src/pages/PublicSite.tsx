@@ -250,10 +250,12 @@ export default function PublicSite() {
             ¿Cuál es el mayor problema<br />en tu vereda o barrio?
           </h3>
           <p className="ps-cta-text">
-            Próximamente lanzamos el formulario de necesidades ciudadanas.
+            El formulario de necesidades ciudadanas ya está activo.
             Cuéntanos qué le duele a tu comunidad — tu respuesta construye el plan de gobierno.
           </p>
-          <div className="ps-cta-btn">Formulario próximamente ›</div>
+          <a href="#/reportar" className="ps-cta-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
+            Reportar mi zona ›
+          </a>
         </div>
       </section>
 
