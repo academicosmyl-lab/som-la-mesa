@@ -473,7 +473,9 @@
 }
 
 .ps-cta-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background: #1a1a1a;
   color: #fff;
   font-family: sans-serif;
@@ -481,9 +483,60 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 14px 36px;
-  opacity: 0.5;
-  cursor: default;
+  padding: 16px 40px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.28s ease, border-color 0.28s ease,
+              box-shadow 0.28s ease, transform 0.18s ease, gap 0.22s ease;
+}
+
+.ps-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #19E3C2 0%, #0aab8e 100%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.ps-cta-btn:hover {
+  background: #111;
+  border-color: #19E3C2;
+  box-shadow: 0 0 0 4px rgba(25,227,194,0.12), 0 8px 28px rgba(25,227,194,0.18);
+  transform: translateY(-2px);
+  gap: 18px;
+  color: #fff;
+}
+
+.ps-cta-btn:hover::before {
+  opacity: 0.12;
+}
+
+.ps-cta-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 3px rgba(25,227,194,0.1);
+}
+
+.ps-cta-btn .ps-cta-arrow {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.22s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.ps-cta-btn:hover .ps-cta-arrow {
+  transform: translateX(5px);
+}
+
+.ps-cta-btn .ps-cta-text-inner {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── FOOTER ── */

@@ -253,8 +253,9 @@ export default function PublicSite() {
             El formulario de necesidades ciudadanas ya está activo.
             Cuéntanos qué le duele a tu comunidad — tu respuesta construye el plan de gobierno.
           </p>
-          <a href="#/reportar" className="ps-cta-btn" style={{ textDecoration: 'none', display: 'inline-block' }}>
-            Reportar mi zona ›
+          <a href="#/reportar" className="ps-cta-btn" style={{ textDecoration: 'none' }}>
+            <span className="ps-cta-text-inner">Reportar mi zona</span>
+            <span className="ps-cta-arrow">›</span>
           </a>
         </div>
       </section>
