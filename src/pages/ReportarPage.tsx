@@ -41,6 +41,7 @@ interface FormState {
   autorizaContacto: boolean | null
   nombre: string
   celular: string
+  email: string
   consentimiento: boolean
   quiereLider: 'si' | 'tal_vez' | 'no' | null
 }
@@ -49,7 +50,7 @@ const INIT: FormState = {
   esHabitante: null, tipoZona: null, zonaNombre: '',
   temas: [], detalles: {},
   fotoFile: null, fotoUrl: null, lat: null, lng: null,
-  autorizaContacto: null, nombre: '', celular: '', consentimiento: false,
+  autorizaContacto: null, nombre: '', celular: '', email: '', consentimiento: false,
   quiereLider: null,
 }
 
@@ -123,6 +124,7 @@ export default function ReportarPage() {
         .insert({
           nombre: form.nombre,
           celular: form.celular,
+          email: form.email || null,
           zona_id: null,
           quiere_ser_lider: form.quiereLider === 'si',
           consentimiento: true,
@@ -332,6 +334,11 @@ export default function ReportarPage() {
                 />
                 <input placeholder="Celular / WhatsApp" value={form.celular}
                   onChange={e => set({ celular: e.target.value })}
+                  style={{ padding: '13px 16px', borderRadius: 10, background: card, border: `1px solid ${border}`, color: '#e2e8f0', fontSize: 15 }}
+                />
+                <input placeholder="Correo electrónico (opcional — para confirmación)" value={form.email}
+                  onChange={e => set({ email: e.target.value })}
+                  type="email"
                   style={{ padding: '13px 16px', borderRadius: 10, background: card, border: `1px solid ${border}`, color: '#e2e8f0', fontSize: 15 }}
                 />
                 <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer', fontSize: 13, color: '#94a3b8' }}>
